@@ -5,7 +5,7 @@ from DataManager import config
 # Logger configuration
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    level=config.log_level,  # Imposta su DEBUG in modo da includere tutti i livelli di log
+    level=config.log_level,
 )
 
 logger = logging.getLogger(__name__)
