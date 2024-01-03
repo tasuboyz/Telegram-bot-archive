@@ -1,10 +1,5 @@
 <a href="https://revolut.me/tasuhi2dph"><img src="https://img.shields.io/badge/Donazioni-Revolut-blue?logo=revolut&style=for-the-badge" alt="Revolut Donations"></a>
-<form action="https://www.paypal.com/donate" method="post" target="_top">
-<input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID" />
-<input type="image" src="https://www.paypalobjects.com/it_IT/IT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - Il metodo rapido, affidabile e innovativo per pagare e farsi pagare." alt="Donazione con PayPal" />
-<img alt="" border="0" src="https://www.paypal.com/it_IT/i/scr/pixel.gif" width="1" height="1" />
-</form>
-
+<a href="https://www.paypal.com/qrcodes/p2pqrc/V27NRQGNKSDFJ"><img src="https://img.shields.io/badge/Donazioni-Paypal-blue?logo=paypal&style=for-the-badge" alt="Paypal Donations"></a>
 
 # Telegram-bot-archive
 
