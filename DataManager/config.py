@@ -8,7 +8,7 @@ admin_id = 'YOUR-CHAT_ID'
 
 api_base_url = 'http://localhost:8081'  
 
-log_file_path = 'log.txt'  
+log_file_path = 'log.txt'  #name of file log
 
 use_local_api = False   # Set to False if the API is not in local
 
