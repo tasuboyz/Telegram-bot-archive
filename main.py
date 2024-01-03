@@ -16,7 +16,7 @@ async def main() -> None:
         my_bot = MyBot(base_dir, instance.bot)
         await my_bot.dp.start_polling(my_bot.bot)
     except Exception as ex:
-        logging.error(f"Errore durante l'esecuzione di command_start_handler: {ex}", exc_info=True)
+        logging.error(f"{ex}", exc_info=True)
     
 if __name__ == '__main__':       
     asyncio.run(main())
