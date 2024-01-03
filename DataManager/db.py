@@ -16,31 +16,31 @@ class Database():
         self.create_table()
         self.c.execute("INSERT OR IGNORE INTO files (path) VALUES (?)", (path,))
         self.conn.commit()
-        return self.c.lastrowid  # Return the id of the inserted entry
+        return self.c.lastrowid
     
     def update_entry(self, Id, new_path):
         self.c.execute("UPDATE files SET path = ? WHERE id = ?", (new_path, Id))
-        self.conn.commit()  # Esegui il commit delle modifiche       
+        self.conn.commit() 
     
     def get_entry(self, Id):
         self.create_table()
-        self.c.execute('SELECT path FROM files WHERE id = ?', (Id,)) # Ottieni lo stato personalizzato dell' l'utente
+        self.c.execute('SELECT path FROM files WHERE id = ?', (Id,))
         row = self.c.fetchone()
         self.conn.commit()
         if row is not None:
             return row[0]
         else:
-            return False  # o qualsiasi valore predefinito
+            return False
         
     def get_id(self, path):
         self.create_table()
-        self.c.execute('SELECT id FROM files WHERE path = ?', (path,)) # Ottieni lo stato personalizzato dell' l'utente
+        self.c.execute('SELECT id FROM files WHERE path = ?', (path,))
         row = self.c.fetchone()
         self.conn.commit()
         if row is not None:
             return row[0]
         else:
-            return False  # o qualsiasi valore predefinito
+            return False
 
     def delete_entry(self, id):
         self.create_table()
