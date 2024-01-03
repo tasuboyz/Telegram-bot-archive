@@ -1,3 +1,6 @@
+<a href="https://revolut.me/tasuhi2dph"><img src="https://img.shields.io/badge/Donazioni-Revolut-blue?logo=revolut&style=for-the-badge" alt="Donazioni Revolut"></a>
+
+
 # Telegram-bot-archive
 
 Welcome to the Telegram-bot-archive project! This project can download and upload and manage the files and folders of a repostory where the script is located.
