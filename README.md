@@ -16,7 +16,11 @@ Welcome to the [Telegram-bot-archive] project! This project can download and upl
     ```bash
     python main.py
     ```
-
+   - Or
+    ```bash
+    python3 main.py
+    ```
+    
 ## How to Get Started
 
 Follow these steps to get started with the project:
