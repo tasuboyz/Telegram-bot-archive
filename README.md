@@ -1,5 +1,52 @@
-<a href="https://revolut.me/tasuhi2dph"><img src="https://img.shields.io/badge/Donazioni-Revolut-blue?logo=revolut&style=for-the-badge" alt="Revolut Donations"></a>
-<a href="https://www.paypal.com/qrcodes/p2pqrc/V27NRQGNKSDFJ"><img src="https://img.shields.io/badge/Donazioni-Paypal-blue?logo=paypal&style=for-the-badge" alt="Paypal Donations"></a>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supporta il Progetto</title>
+    <!-- Altri stili e script rimossi per chiarezza -->
+    <style>
+        /* Stili per i bottoni */
+        .donation-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #3498db;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .donation-button:hover {
+            background-color: #217dbb;
+        }
+
+        /* Stili per gli shield */
+        .shield {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Primo bottone di donazione -->
+    <a href="https://revolut.me/tasuhi2dph" class="donation-button">
+        <img src="https://img.shields.io/badge/Supporta%20con-Revolut-blue?logo=revolut&style=for-the-badge" alt="Revolut Donations" class="shield">
+        Fai una Donazione con Revolut
+    </a>
+
+    <!-- Secondo bottone di donazione -->
+    <a href="https://www.paypal.com/qrcodes/p2pqrc/V27NRQGNKSDFJ" class="donation-button">
+        <img src="https://img.shields.io/badge/Supporta%20con-Paypal-blue?logo=paypal&style=for-the-badge" alt="Paypal Donations" class="shield">
+        Fai una Donazione con Paypal
+    </a>
+
+    <!-- Altri contenuti della pagina -->
+
+</body>
+</html>
 
 # Telegram-bot-archive
 
