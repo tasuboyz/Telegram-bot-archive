@@ -78,10 +78,6 @@ class FolderManager:
                 else:
                     with concurrent.futures.ThreadPoolExecutor() as executor:
                         executor.submit(shutil.move, file_path, save_path)
-
-                # end_time = time.time()
-                # time_difference = end_time - start_time
-                # await message.answer(f"Tempo di caricamento: {time_difference} secondi")
                 
                 file_size = os.path.getsize(save_path) / (1024 * 1024)  # Dimensione del file in MB
         
