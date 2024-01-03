@@ -66,20 +66,16 @@ class FolderManager:
                 file_path = file_info.file_path                
                 original_file_name = file.file_name if hasattr(file, 'file_name') else file_path.split("/")[-1]
 
-                # Ottieni il percorso della directory del tuo script
                 script_dir = os.path.dirname(os.path.realpath(__file__))
-
-                # Crea il percorso completo dove salvare il file
                 save_path = os.path.join(script_dir, original_file_name)
 
-                # start_time = time.time()
                 if config.use_local_api == False:
                     await self.bot.download_file(file_path, save_path)
                 else:
                     with concurrent.futures.ThreadPoolExecutor() as executor:
                         executor.submit(shutil.move, file_path, save_path)
                 
-                file_size = os.path.getsize(save_path) / (1024 * 1024)  # Dimensione del file in MB
+                file_size = os.path.getsize(save_path) / (1024 * 1024) 
         
                 return save_path, original_file_name
             return None
@@ -191,9 +187,7 @@ class FolderManager:
             existing_file_path = self.file_exists_in_subfolders(base_dir, file_name)
 
             if existing_file_path:
-                # Se il file esiste già, rimuovilo
                 os.remove(existing_file_path)
-                # Sposta il nuovo file nella posizione del vecchio
                 shutil.move(file_path, existing_file_path)
         
     def file_exists_in_subfolders(self, base_dir, file_name):
