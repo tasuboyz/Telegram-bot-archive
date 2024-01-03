@@ -1,5 +1,5 @@
 [![Support with Revolut](https://img.shields.io/badge/Support-Revolut-blue?logo=revolut&style=for-the-badge)](https://revolut.me/tasuhi2dph)
-[![Paypal Donations](https://img.shields.io/badge/Support-Paypal-blue?logo=paypal&style=for-the-badge)](https://www.paypal.com/qrcodes/p2pqrc/V27NRQGNKSDFJ)
+<a href="https://www.paypal.com/qrcodes/p2pqrc/V27NRQGNKSDFJ"><img src="https://img.shields.io/badge/Donazioni-Paypal-blue?logo=paypal&style=for-the-badge" alt="Paypal Donations"></a>
 
 # Telegram-bot-archive
 
