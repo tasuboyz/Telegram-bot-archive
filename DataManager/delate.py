@@ -20,7 +20,7 @@ class Delete:
             else:
                 os.remove(file_path)
             self.db.delete_entry(file_id)
-            await callback_query.answer(f"{file_name} eliminato con successo!")
+            await callback_query.answer(f"{file_name} delated succesfully!")
         finally:
             await state.clear()
 
