@@ -43,15 +43,15 @@ class FolderManager:
                 keyboard_buttons.append([InlineKeyboardButton(text=f"📄 {entry}", callback_data=f"file_action:{i}")])
 
         if page > 0:
-            keyboard_buttons.append([InlineKeyboardButton(text="⬅️ Precedente", callback_data=f"prev_page:{page-1}")])
+            keyboard_buttons.append([InlineKeyboardButton(text="⬅️ Previus", callback_data=f"prev_page:{page-1}")])
 
         if end_index < len(entries):
-            keyboard_buttons.append([InlineKeyboardButton(text="Successivo ➡️", callback_data=f"next_page:{page+1}")])
+            keyboard_buttons.append([InlineKeyboardButton(text="Next ➡️", callback_data=f"next_page:{page+1}")])
 
         if self.current_path != self.base_path:
-            keyboard_buttons.append([InlineKeyboardButton(text="🔙 Indietro", callback_data="back")])
+            keyboard_buttons.append([InlineKeyboardButton(text="🔙 Back", callback_data="back")])
 
-        keyboard_buttons.append([InlineKeyboardButton(text="❌ Annulla", callback_data="cancel")])
+        keyboard_buttons.append([InlineKeyboardButton(text="❌ Cancel", callback_data="cancel")])
 
         keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard_buttons)
         return keyboard
@@ -59,7 +59,7 @@ class FolderManager:
     async def ReciveImage(self, message):
         chat_id = message.chat.id
         try:           
-            loading_message = await self.bot.send_message(chat_id, "Caricamento del file in corso...")
+            loading_message = await self.bot.send_message(chat_id, "File upload in progress...")
             if message.document or message.photo or message.animation:
                 file = message.document or message.photo[-1] or message.animation
                 file_info = await self.bot.get_file(file.file_id)
@@ -113,9 +113,9 @@ class FolderManager:
 
         # Aggiungi bottoni di cancellazione e indietro
         if self.current_path != self.base_path:
-            keyboard_buttons.append([InlineKeyboardButton(text="🔙 Indietro", callback_data="back")])
+            keyboard_buttons.append([InlineKeyboardButton(text="🔙 Back", callback_data="back")])
 
-        keyboard_buttons.append([InlineKeyboardButton(text="❌ Annulla", callback_data="cancel")])
+        keyboard_buttons.append([InlineKeyboardButton(text="❌ Cancel", callback_data="cancel")])
 
         keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard_buttons)
         return keyboard
@@ -131,16 +131,16 @@ class FolderManager:
         buttons = []
         buttons.append(
         [
-            InlineKeyboardButton(text="📥 Scarica", callback_data=f"get:{file_id}"),
-            InlineKeyboardButton(text="✏️ Rinomina", callback_data=f"rename:{file_id}")
+            InlineKeyboardButton(text="📥 Upload", callback_data=f"get:{file_id}"),
+            InlineKeyboardButton(text="✏️ Rename", callback_data=f"rename:{file_id}")
         ])
         buttons.append(
         [
-            InlineKeyboardButton(text="📂 Sposta", callback_data=f"move:{file_id}"),
-            InlineKeyboardButton(text="🗑️ Elimina", callback_data=f"delete:{file_id}")
+            InlineKeyboardButton(text="📂 Move", callback_data=f"move:{file_id}"),
+            InlineKeyboardButton(text="🗑️ Delate", callback_data=f"delete:{file_id}")
         ])
-        buttons.append([InlineKeyboardButton(text="🔙 Indietro", callback_data="back")])
-        buttons.append([InlineKeyboardButton(text="❌ Annulla", callback_data="cancel")])        
+        buttons.append([InlineKeyboardButton(text="🔙 Back", callback_data="back")])
+        buttons.append([InlineKeyboardButton(text="❌ Cancel", callback_data="cancel")])        
         keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
         return keyboard
 
@@ -148,16 +148,16 @@ class FolderManager:
         buttons = []
         buttons.append(
         [
-            InlineKeyboardButton(text="📥 Scarica", callback_data=f"get:{folder_id}"),
-            InlineKeyboardButton(text="✏️ Rinomina", callback_data=f"rename:{folder_id}")
+            InlineKeyboardButton(text="📥 Upload", callback_data=f"get:{folder_id}"),
+            InlineKeyboardButton(text="✏️ Rename", callback_data=f"rename:{folder_id}")
         ])
         buttons.append(
         [
-            InlineKeyboardButton(text="📂 Sposta", callback_data=f"move:{folder_id}"),
-            InlineKeyboardButton(text="🗑️ Elimina", callback_data=f"delete:{folder_id}")
+            InlineKeyboardButton(text="📂 Move", callback_data=f"move:{folder_id}"),
+            InlineKeyboardButton(text="🗑️ Delate", callback_data=f"delete:{folder_id}")
         ])        
-        buttons.append([InlineKeyboardButton(text="🔙 Indietro", callback_data="back")])
-        buttons.append([InlineKeyboardButton(text="❌ Annulla", callback_data="cancel")])
+        buttons.append([InlineKeyboardButton(text="🔙 Back", callback_data="back")])
+        buttons.append([InlineKeyboardButton(text="❌ Cancel", callback_data="cancel")])
         keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
         return keyboard
 
