@@ -1,4 +1,4 @@
-<a href="https://revolut.me/tasuhi2dph"><img src="https://img.shields.io/badge/Donazioni-Revolut-blue?logo=revolut&style=for-the-badge" alt="Donazioni Revolut"></a>
+<a href="https://revolut.me/tasuhi2dph"><img src="https://img.shields.io/badge/Donazioni-Revolut-blue?logo=revolut&style=for-the-badge" alt="Revolut Donations"></a>
 
 
 # Telegram-bot-archive
