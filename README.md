@@ -31,3 +31,4 @@ Follow these steps to get started with the project:
 
 2. Create your own Telegram bot with BotFather
 3. Edit config.py in the DataManager folder enter your bot token and your chat_id or user_id (it's the same)
+4. It is recommended to install the Telegram Bot API locally to have no limit up to 2 GB (4 GB with Telegram Premium). Follow the instructions `[here]` for the installation.
