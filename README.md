@@ -30,4 +30,4 @@ Follow these steps to get started with the project:
    git clone https://github.com/tasuboyz/Telegram-bot-archive.git
 
 2. Create your own Telegram bot with BotFather
-3. edit config.py in the DataManager folder enter your bot token and your chat_id or user_id (it's the same)
+3. Edit config.py in the DataManager folder enter your bot token and your chat_id or user_id (it's the same)
