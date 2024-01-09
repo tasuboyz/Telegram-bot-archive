@@ -1,4 +1,4 @@
-from config import TOKEN, api_base_url, use_local_api
+from .config import TOKEN, api_base_url, use_local_api
 from aiogram.client.telegram import TelegramAPIServer
 from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram import Bot
