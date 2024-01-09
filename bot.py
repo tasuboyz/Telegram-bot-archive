@@ -158,7 +158,7 @@ class MyBot:
     async def handle_move_to_folder_callback(self, callback_query: types.CallbackQuery, state: FSMContext):
         try:
             folder_id = int(callback_query.data.split(':')[1])
-            folder_path = self.folder_manager.get_entry(folder_id)
+            folder_path = self.db.get_entry(folder_id)
             await self.move.handle_move_to_folder_callback(callback_query, folder_path, state)
         except Exception as ex:
             logger_config.logger.error(f"{ex}", exc_info=True)
