@@ -1,8 +1,8 @@
 import logging
 
-bot_token = 'YOUR-TOKEN' #token of test
+TOKEN = 'YOUR-TOKEN' #token of test
 
-#bot_token = 'YOUR-TOKEN' #token of production
+#TOKEN = 'YOUR-TOKEN' #token of production
 
 admin_id = 'YOUR-CHAT_ID'
 
