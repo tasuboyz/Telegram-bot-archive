@@ -115,7 +115,7 @@ class FolderManager:
     def handle_callback(self, callback):
         if callback.startswith("move:"):
             folder_id = int(callback.split(":")[-1])
-            folder_name = self.get_entry(folder_id)
+            folder_name = self.db.get_entry(folder_id)
             if folder_name:
                 self.change_folder(folder_name)
 
