@@ -22,6 +22,7 @@ class Rename:
         os.rename(old_path, new_name_path)
         Database().update_entry(entry_id, new_name_path)
         await message.answer(f"Rinomina avvenuta con successo. Nuovo nome: {new_name}")
+        await state.clear()
     
     async def process_callback_rename(self, callback_query: types.CallbackQuery, state):
         try:
@@ -34,3 +35,9 @@ class Rename:
             await self.bot.delete_message(callback_query.message.chat.id, callback_query.message.message_id)            
         except Exception as e:
             await self.bot.send_message(callback_query.from_user.id, f"Errore durante la rinomina: {e}")
+
+
+
+
+
+
