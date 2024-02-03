@@ -38,7 +38,7 @@ class MyBot:
         self.delete = Delete(self.bot, self.folder_manager)
         self.move = MoveFile(self.bot, self.folder_manager)    
 
-        # Qui spostiamo i comandi dal main alla classe
+        #Commands
         self.dp.message(CommandStart())(self.command_start_handler)
         self.dp.message(F.photo | F.document)(self.handle_message)
         self.dp.callback_query(F.data.startswith('prev_page:'))(self.process_callback_menage_page)
