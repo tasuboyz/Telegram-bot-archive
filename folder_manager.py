@@ -1,4 +1,4 @@
-﻿import os
+import os
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import shutil
 import sqlite3
@@ -103,7 +103,6 @@ class FolderManager:
                 InlineKeyboardButton(text=f"✅ {folder_name}, {folder_id}", callback_data=f"move_to_folder:{folder_id}")
             ])
 
-        # Aggiungi bottoni di cancellazione e indietro
         if self.current_path != self.base_path:
             keyboard_buttons.append([InlineKeyboardButton(text="🔙 Back", callback_data="back")])
 
@@ -131,7 +130,7 @@ class FolderManager:
             InlineKeyboardButton(text="📂 Move", callback_data=f"move:{file_id}"),
             InlineKeyboardButton(text="🗑️ Delate", callback_data=f"delete:{file_id}")
         ])
-        buttons.append([InlineKeyboardButton(text="🔙 Back", callback_data="back")])
+        buttons.append([InlineKeyboardButton(text="🔙 Back", callback_data="back_to_list")])
         buttons.append([InlineKeyboardButton(text="❌ Cancel", callback_data="cancel")])        
         keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
         return keyboard
