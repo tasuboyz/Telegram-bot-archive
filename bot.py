@@ -55,7 +55,7 @@ class MyBot:
         self.dp.callback_query(F.data.startswith('move:'))(self.move.show_destination_folders)
         self.dp.callback_query(F.data.startswith('enter_folder:'))(self.handle_enter_folder_callback)
         self.dp.callback_query(F.data.startswith('move_to_folder:'))(self.handle_move_to_folder_callback)
-        self.dp.callback_query(F.data =='back_to_list')(self.command_start_handler)
+        self.dp.callback_query(F.data =='back_to_list')(self.back_to_list)
         self.dp.message(F.text)(self.filter_entries)
         self.dp.message(Command("create_folder"))(self.handle_create_folder)
         self.dp.message(CreateFolderState.name)(self.handle_folder_name)
