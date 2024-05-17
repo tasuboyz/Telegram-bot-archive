@@ -22,7 +22,7 @@ import os
 import asyncio
 from DataManager.db import UserInfo, Database
 from DataManager import config
-from DataManager.logger_config import logger
+from DataManager import logger_config
 
 class MyBot:
     def __init__(self, base_dir, bot):
@@ -38,12 +38,13 @@ class MyBot:
         self.delete = Delete(self.bot, self.folder_manager)
         self.move = MoveFile(self.bot, self.folder_manager)    
 
-        #Commands
+        # Qui spostiamo i comandi dal main alla classe
         self.dp.message(CommandStart())(self.command_start_handler)
         self.dp.message(F.photo | F.document)(self.handle_message)
         self.dp.callback_query(F.data.startswith('prev_page:'))(self.process_callback_menage_page)
         self.dp.callback_query(F.data.startswith('next_page:'))(self.process_callback_menage_page)
         self.dp.callback_query(F.data.startswith('folder_entry:'))(self.handle_folder_callback)
+        self.dp.callback_query(MoveFileState.file_name, F.data == 'back')(self.command_action_back_handler)
         self.dp.callback_query(F.data == 'back')(self.handle_back_callback)
         self.dp.callback_query(F.data == "cancel")(self.handle_cancel_callback)
         self.dp.callback_query(F.data.startswith('file_action:'))(self.handle_action_file_callback)
@@ -55,9 +56,8 @@ class MyBot:
         self.dp.callback_query(F.data.startswith('move:'))(self.move.show_destination_folders)
         self.dp.callback_query(F.data.startswith('enter_folder:'))(self.handle_enter_folder_callback)
         self.dp.callback_query(F.data.startswith('move_to_folder:'))(self.handle_move_to_folder_callback)
-        self.dp.callback_query(F.data =='back_to_list')(self.back_to_list)
-        self.dp.message(F.text)(self.filter_entries)
         self.dp.message(Command("create_folder"))(self.handle_create_folder)
+        self.dp.message(F.text)(self.filter_entries)
         self.dp.message(CreateFolderState.name)(self.handle_folder_name)
         
     async def command_start_handler(self, message: Message) -> None:
@@ -65,18 +65,20 @@ class MyBot:
         try:
             if user_id == self.admin_id:
                 keyboard = self.folder_manager.list_entries(None, 0)
-                await message.answer("Select element:", reply_markup=keyboard)                
+                await message.answer("Select element:", reply_markup=keyboard)
         except Exception as ex:
-            logger.error(f"{ex}", exc_info=True)
+            logging.error(f"{ex}", exc_info=True)
             await self.bot.send_message(self.admin_id, f"{user_id}:{ex}")  
 
-    async def back_to_list(self, callback_query: types.CallbackQuery) -> None:
+    async def command_action_back_handler(self, callback_query: types.CallbackQuery, state: FSMContext) -> None:
         user_id = UserInfo(callback_query).user_id
+        await state.clear()
         try:
-            keyboard = self.folder_manager.list_entries(None, 0)
-            await callback_query.message.edit_text("Select element:", reply_markup=keyboard)               
+            if user_id == self.admin_id:
+                keyboard = self.folder_manager.list_entries(None, 0)
+                await callback_query.message.edit_text("Select element:", reply_markup=keyboard)
         except Exception as ex:
-            logger.error(f"{ex}", exc_info=True)
+            logging.error(f"{ex}", exc_info=True)
             await self.bot.send_message(self.admin_id, f"{user_id}:{ex}")  
 
     async def handle_message(self, message: types.Message):
@@ -87,7 +89,7 @@ class MyBot:
                     await message.answer(f"File saved in {file_path}")
                     self.folder_manager.save_file(file_path, self.save_dir)
         except Exception as ex:
-            logger.error(f"{ex}", exc_info=True)
+            logging.error(f"{ex}", exc_info=True)
             await self.bot.send_message(self.admin_id, f"{ex}")  
         return      
             
@@ -97,7 +99,7 @@ class MyBot:
             keyboard = self.folder_manager.list_entries(None, page)
             await self.bot.edit_message_text("Select element:", callback_query.from_user.id, callback_query.message.message_id, reply_markup=keyboard)
         except Exception as ex:
-            logger.error(f"{ex}", exc_info=True)
+            logger_config.logger.error(f"{ex}", exc_info=True)
             await self.bot.send_message(self.admin_id, f"{ex}")  
             
     async def handle_folder_callback(self, callback_query: types.CallbackQuery):
@@ -108,7 +110,7 @@ class MyBot:
             keyboard = self.folder_manager.list_entries(None, 0)
             await callback_query.message.edit_text("Select element:", reply_markup=keyboard)
         except Exception as ex:
-            logger.error(f"{ex}", exc_info=True)
+            logger_config.logger.error(f"{ex}", exc_info=True)
             await self.bot.send_message(self.admin_id, f"{ex}")  
             
     async def handle_back_callback(self, callback_query: types.CallbackQuery):
@@ -117,7 +119,7 @@ class MyBot:
             keyboard = self.folder_manager.list_entries(None, 0)
             await callback_query.message.edit_text("Select element:", reply_markup=keyboard)
         except Exception as ex:
-            logger.error(f"{ex}", exc_info=True)
+            logger_config.logger.error(f"{ex}", exc_info=True)
             await self.bot.send_message(self.admin_id, f"{ex}")  
             
     async def handle_cancel_callback(self, callback_query: types.CallbackQuery):
@@ -125,7 +127,7 @@ class MyBot:
             user_id = callback_query.from_user.id
             await callback_query.message.edit_text("Operation delated")
         except Exception as ex:
-            logger.error(f"{ex}", exc_info=True)
+            logger_config.logger.error(f"{ex}", exc_info=True)
             await self.bot.send_message(self.admin_id, f"{ex}")  
         
     async def handle_action_file_callback(self, callback_query: types.CallbackQuery, state: FSMContext):
@@ -138,7 +140,7 @@ class MyBot:
             keyboard = self.folder_manager.file_actions(file_id)
             await callback_query.message.edit_text(f"Action for file {file_name}:", reply_markup=keyboard)
         except Exception as ex:
-            logger.error(f"{ex}", exc_info=True)
+            logger_config.logger.error(f"{ex}", exc_info=True)
             await self.bot.send_message(self.admin_id, f"{ex}")  
         
     async def handle_action_folder_callback(self, callback_query: types.CallbackQuery, state: FSMContext):
@@ -150,7 +152,7 @@ class MyBot:
             keyboard = self.folder_manager.folder_actions(folder_id)
             await callback_query.message.edit_text(f"Action for folder {folder_name}:", reply_markup=keyboard)
         except Exception as ex:
-            logger.error(f"{ex}", exc_info=True)
+            logger_config.logger.error(f"{ex}", exc_info=True)
             await self.bot.send_message(self.admin_id, f"{ex}")         
         
     async def handle_enter_folder_callback(self, callback_query: types.CallbackQuery):
@@ -162,7 +164,7 @@ class MyBot:
             else:
                 await callback_query.message.edit_text("cannot open directory")
         except Exception as ex:
-            logger.error(f"{ex}", exc_info=True)
+            logger_config.logger.error(f"{ex}", exc_info=True)
             await self.bot.send_message(self.admin_id, f"{ex}")  
         
     async def handle_move_to_folder_callback(self, callback_query: types.CallbackQuery, state: FSMContext):
@@ -171,7 +173,7 @@ class MyBot:
             folder_path = self.db.get_entry(folder_id)
             await self.move.handle_move_to_folder_callback(callback_query, folder_path, state)
         except Exception as ex:
-            logger.error(f"{ex}", exc_info=True)
+            logger_config.logger.error(f"{ex}", exc_info=True)
             await self.bot.send_message(self.admin_id, f"{ex}") 
             
     async def filter_entries(self, message: types.Message):
@@ -182,7 +184,7 @@ class MyBot:
                 keyboard = self.folder_manager.list_entries(filter_text, 0)
                 await message.answer("Select element:", reply_markup=keyboard)
         except Exception as ex:
-            logger.error(f"{ex}", exc_info=True)
+            logger_config.logger.error(f"{ex}", exc_info=True)
             await self.bot.send_message(self.admin_id, f"{ex}")  
 
     async def handle_create_folder(message: types.Message, state: FSMContext):
